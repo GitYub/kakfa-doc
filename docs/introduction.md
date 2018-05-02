@@ -1,6 +1,6 @@
-## Apache Kafka® is a distributed streaming platform(分布式流平台). What exactly does that mean?
+# Apache Kafka® is a distributed streaming platform(分布式流平台). What exactly does that mean?
 
-### 一个流平台有三个关键要素：
+## 一个流平台有三个关键要素：
 
 * Publish and subscribe to streams of records, similar to a message queue or enterprise messaging system.
 
@@ -14,7 +14,7 @@
 
     即时处理记录流
 
-### kafka主要应用在两类场景
+## kafka主要应用在两类场景
 
 1. Building real-time streaming data pipelines that reliably get data between systems or applications
 
@@ -26,7 +26,7 @@
 
 ---
 
-### Kafka相关概念
+## Kafka相关概念
 
 * Kafka is run as a cluster on one or more servers that can span multiple datacenters.
 
@@ -42,7 +42,7 @@
 
 ---
 
-### kafka 有4个核心APIs
+## kafka 有4个核心APIs
 
 1. The Producer API allows an application to publish a stream of records to one or more Kafka topics.
 
@@ -66,7 +66,7 @@
 
 Kafka客户端和服务端之间的通信是建立在简单的、高效的、语言无关的TCP协议上的。此协议带有版本且向后兼容。我们为Kafka提供了Java客户端，但是客户端可以使用多种语言。
 
-### Topics and Logs
+## Topics and Logs
 
 一个topic是一个数据流记录（records）的提供者。Kafka中的topics一般是多订阅者的，即一个Topic可以有0个,1个,多个Consumer消费者订阅。
 
@@ -96,7 +96,7 @@ The partitions in the log serve several purposes. First, they allow the log to s
 
 日志划分分区有多个目的。第一：当一个日志的规模超过单台的服务器时，这仍是可行的。每一个分区partion会适应服务器的大小，一个topic可能会有多个分区，所以kafka可以处理任意大小的数据。第二，对外表现成一个并行的统一单元
 
-### Distribution（分布式）
+## Distribution（分布式）
 
 The partitions of the log are distributed over the servers in the Kafka cluster with each server handling data and requests for a share of the partitions. Each partition is replicated across a configurable number of servers for fault tolerance.
 
@@ -106,18 +106,18 @@ Each partition has one server which acts as the "leader" and zero or more server
 
 每个分区都有一个服务器充当leader“领导者”，零个或多个服务器充当followers“追随者”。leader处理对分区所有的读写请求，followers就会被动复制这个leader。如果leader失败，其中一个follower会自动变成leader。每个服务器都充当某些分区的leader，并且每个分区有一些follower服务器，这对于集群来说是平衡的。
 
-### Geo-Replication
+## Geo-Replication
 
 Kafka MirrorMaker provides geo-replication support for your clusters. With MirrorMaker, messages are replicated across multiple datacenters or cloud regions. You can use this in active/passive scenarios for backup and recovery; or in active/active scenarios to place data closer to your users, or support data locality requirements.
 
 
-### Producer (生产者)
+## Producer (生产者)
 
 Producers publish data to the topics of their choice. The producer is responsible for choosing which record to assign to which partition within the topic. This can be done in a round-robin fashion simply to balance load or it can be done according to some semantic partition function (say based on some key in the record). More on the use of partitioning in a second!
 
 生产者推送数据到他们选择的topics。生产者负责选择哪个record分配到指定topics的哪个分区partion中。通过循环的方式可以简单地来平衡负载recors到分区上或可以根据一些语义分区函数来确定记录到哪个分区上（例如根据records的key进行划分）。
 
-### Consumers (消费者)
+## Consumers (消费者)
 
 Consumers label themselves with a consumer group name, and each record published to a topic is delivered to one consumer instance within each subscribing consumer group. Consumer instances can be in separate processes or on separate machines.
 
@@ -142,12 +142,12 @@ If all the consumer instances have different consumer groups, then each record w
 Kafka只保证同一个分区内record的顺序，而不能确保同一个topic的不同分区间数据的顺序。每个分区顺序结合按Key分配分区，这能满足大多数程序的需求。如果需要全局的顺序，可以使用只有一个分区的topic，这意味着每个group只能有一个Consumer实例（因为一个分区同一时刻只能被一份Consumer消费——多加的Consumer只能用于容错）。
 
 
-### Multi-tenancy ( 多租户架构 )
+## Multi-tenancy ( 多租户架构 )
 
 You can deploy Kafka as a multi-tenant solution. Multi-tenancy is enabled by configuring which topics can produce or consume data. There is also operations support for quotas. Administrators can define and enforce quotas on requests to control the broker resources that are used by clients. For more information, see the **security documentation**.
 
 
-### Guarantees
+## Guarantees
 
 At a high-level Kafka gives the following guarantees:
 　　
@@ -166,7 +166,7 @@ At a high-level Kafka gives the following guarantees:
 
 ----
 
-### Kafka as a Messaging System
+## Kafka as a Messaging System
 
 Messaging traditionally has two models: queuing and publish-subscribe. In a queue, a pool of consumers may read from a server and each record goes to one of them; in publish-subscribe the record is broadcast to all consumers. Each of these two models has a strength and a weakness. The strength of queuing is that it allows you to divide up the processing of data over multiple consumer instances, which lets you scale your processing. Unfortunately, queues aren't multi-subscriber—once one process reads the data it's gone. Publish-subscribe allows you broadcast data to multiple processes, but has no way of scaling processing since every message goes to every subscriber.
 
@@ -191,7 +191,7 @@ A traditional queue retains records in-order on the server, and if multiple cons
 Kafka does it better. By having a notion of parallelism—the partition—within the topics, Kafka is able to provide both ordering guarantees and load balancing over a pool of consumer processes. This is achieved by assigning the partitions in the topic to the consumers in the consumer group so that each partition is consumed by exactly one consumer in the group. By doing this we ensure that the consumer is the only reader of that partition and consumes the data in order. Since there are many partitions this still balances the load over many consumer instances. Note however that there cannot be more consumer instances in a consumer group than partitions.
 
 
-### Kafka as a Storage System
+## Kafka as a Storage System
 
 Any message queue that allows publishing messages decoupled from consuming them is effectively acting as a storage system for the in-flight messages. What is different about Kafka is that it is a very good storage system.
 
@@ -202,7 +202,7 @@ The disk structures Kafka uses scale well—Kafka will perform the same whether 
 As a result of taking storage seriously and allowing the clients to control their read position, you can think of Kafka as a kind of special purpose distributed filesystem dedicated to high-performance, low-latency commit log storage, replication, and propagation.
 
 
-### Kafka for Stream Processing
+## Kafka for Stream Processing
 It isn't enough to just read, write, and store streams of data, the purpose is to enable real-time processing of streams.
 
 In Kafka a stream processor is anything that takes continual streams of data from input topics, performs some processing on this input, and produces continual streams of data to output topics.
@@ -215,7 +215,7 @@ This facility helps solve the hard problems this type of application faces: hand
 
 The streams API builds on the core primitives Kafka provides: it uses the producer and consumer APIs for input, uses Kafka for stateful storage, and uses the same group mechanism for fault tolerance among the stream processor instances.
 
-### Putting the Pieces Together
+## Putting the Pieces Together
 
 This combination of messaging, storage, and stream processing may seem unusual but it is essential to Kafka's role as a streaming platform.
 

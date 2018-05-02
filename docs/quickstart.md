@@ -5,7 +5,7 @@
 
 Kafka是基于zookeeper的，所以首先要配置zookeeper, 其次是Kafka配置
 
-### zookeeper 单节点配置
+# zookeeper 单节点配置
 
 conf/zoo.cfg
 
@@ -46,16 +46,16 @@ clientPort=2181
 bin/zkServer start
 ```
 
-### Kafka配置
+# Kafka配置
 
-#### 1. Kafka官网下载Kafka release包, 并解压
+## Kafka官网下载Kafka release包, 并解压
 
 ```
 tar -xzf kafka_2.11-1.1.0.tgz
 cd kafka_2.11-1.1.0
 ```
 
-#### 2. 启动Kafka服务端
+## 启动Kafka服务端
 
 ```
 bin/kafka-server-start.sh config/server.properties
@@ -80,7 +80,7 @@ log.dirs=/Users/mubi/soft/kafka_2.11-1.1.0/logs
 
 kafka 配置文件默认使用zookeeper 2181 端口
 
-#### 3. 创建topic
+## 创建topic
 
 创建一个名为： test 的 topic
 ```
@@ -94,7 +94,7 @@ bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
 
 
-#### 4. 服务端发送消息
+## 服务端发送消息
 
 直接在控制台上输入任意的消息
 
@@ -105,8 +105,7 @@ This is another message
 xxx
 ```
 
-
-#### 5. 客户端接收消息
+## 客户端接收消息
 
 消费者消费上述服务端的消息
 
@@ -121,9 +120,10 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --f
 
 ---
 
-### Kafka多broker配置
+# Kafka多broker配置
 
-创建server.properties
+## 创建server.properties
+
 ```
 cp config/server.properties config/server-1.properties
 
@@ -146,7 +146,7 @@ config/server-2.properties:
     log.dir=/tmp/kafka-logs-2
 ```
 
-仍然开启zookeeper单节点
+## 仍然开启zookeeper单节点
 ```
 mubideMacBook-Pro:zookeeper-3.4.12 mubi$ bin/zkServer.sh start
 ZooKeeper JMX enabled by default
@@ -155,7 +155,7 @@ Starting zookeeper ... STARTED
 ```
 
 
-接着开启kafka服务
+## 接着开启kafka服务
 ```
 bin/kafka-server-start.sh config/server-1.properties &
 
@@ -163,7 +163,7 @@ bin/kafka-server-start.sh config/server-2.properties &
 ```
 
 
-创建 topic
+## 创建 topic
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 1 --topic my-replicated-topic
 ```
@@ -171,19 +171,13 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 -
 ![](./imgs/create_topic.png)
 
 
-查看topic的broker情况
+## 查看topic的broker情况
+
 ```
 bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
 ```
 
 ![](./imgs/desc_topic.png)
-
-
-* "leader" is the node responsible for all reads and writes for the given partition. Each node will be the leader for a randomly selected portion of the partitions.
-
-* "replicas" is the list of nodes that replicate the log for this partition regardless of whether they are the leader or even if they are currently alive.
-
-* "isr" is the set of "in-sync" replicas. This is the subset of the replicas list that is currently alive and caught-up to the leader.
 
 对于 test topic查看
 ```
@@ -191,11 +185,19 @@ bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic test
 
 Topic:test	PartitionCount:1	ReplicationFactor:1	Configs:
 Topic: test	Partition: 0	Leader: 0	Replicas: 0	Isr: 0
-
 ```
 
+### leader
+"leader" is the node responsible for all reads and writes for the given partition. Each node will be the leader for a randomly selected portion of the partitions.
 
-服务端，客户端 控制台消息测试
+### replicas
+"replicas" is the list of nodes that replicate the log for this partition regardless of whether they are the leader or even if they are currently alive.
+
+### isr
+"isr" is the set of "in-sync" replicas. This is the subset of the replicas list that is currently alive and caught-up to the leader.
+
+
+## 服务端，客户端 控制台消息测试
 
 ```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my-replicated-topic
@@ -207,7 +209,7 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --from-beginning
 
 ----
 
-### 容错测试
+# 容错测试
 
 名称为my-replicated-topic的topic的leader是 broker 1 ，备份是 broker 2
 

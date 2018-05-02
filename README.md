@@ -1,4 +1,3 @@
-# Introduction
 
 ![](./imgs/logo.png)
 

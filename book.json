@@ -1,0 +1,53 @@
+{
+    "plugins": [
+        "-search",
+        "-lunr",
+        "search-plus",
+        "toc2",
+        "splitter",
+        "tbfed-pagefooter",
+        "github",
+        "-sharing", 
+        "sharing-plus",
+        "expandable-chapters-small",
+        "anchor-navigation-ex"
+    ],
+    "pluginsConfig": {
+        "toc2": {
+            "addClass": true,
+            "className": "toc"
+        },
+        "tbfed-pagefooter": {
+            "copyright": "&copy; doctording",
+            "modify_label": "modyfied at：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "github": {
+            "url": "https://github.com/doctording"
+        },
+        "sharing": {
+            "douban": false,
+            "facebook": false,
+            "google": true,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": true,
+            "linkedin": true,
+            "messenger": false,
+            "pocket": false,
+            "qq": false,
+            "qzone": true,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false,
+            "all": [
+                "facebook", "google", "twitter",
+                "weibo", "instapaper", "linkedin",
+                "pocket", "stumbleupon"
+            ]
+        }
+    }
+}
