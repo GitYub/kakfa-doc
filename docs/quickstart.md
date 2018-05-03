@@ -231,3 +231,67 @@ kill -9 pid
 ![](./imgs/desc_topic_2.png)
 
 ----
+
+# 利用 Kafka Connect 工具进行数据的导入/导出数据
+
+Writing data from the console and writing it back to the console is a convenient place to start, but you'll probably want to use data from other sources or export data from Kafka to other systems. For many systems, instead of writing custom integration code you can use Kafka Connect to import or export data.
+
+Kafka Connect is a tool included with Kafka that imports and exports data to Kafka. It is an extensible tool that runs connectors, which implement the custom logic for interacting with an external system. In this quickstart we'll see how to run Kafka Connect with simple connectors that import data from a file to a Kafka topic and export data from a Kafka topic to a file.
+
+kafka利用Connector工具来接入外部数据源，如下是一个简单的测试
+
+1. 启动zookeeper, kafka server并创建一个topic
+
+```
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+bin/kafka-server-start.sh config/server.properties
+
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic connect-test
+Created topic "connect-test"
+```
+
+2. connector 配置
+
+* kafka目录下新建 test.txt 文件
+```
+echo foo> test.txt
+echo bar>> test.txt
+```
+
+* connect-file-source.properties 
+```
+name=local-file-source
+connector.class=FileStreamSource
+tasks.max=1
+file=test.txt
+```
+
+* connect-file-sink.properties 
+```
+name=local-file-sink
+connector.class=FileStreamSink
+tasks.max=1
+file=test.sink.txt
+```
+
+* 启动 connector,查看sink文件的生成
+
+```
+bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
+```
+
+![](./imgs/test.png)
+
+3. 客户端验证
+
+```
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
+```
+
+![](./imgs/connect-test-console-consumer.png)
+
+
+![](./imgs/connect-test-console-consumer-2.png)
+
+---
