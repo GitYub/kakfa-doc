@@ -24,7 +24,7 @@ git clone https://github.com/doctording/kakfa-doc
 
 cd kafka-doc
 
-npm install gitbook-cli -g # 参看boot.json，或者npm全局安装 gitbook plugins
+npm install gitbook-cli -g # 参看book.json，或者npm全局安装 gitbook plugins
 
 gitbook install 
 
