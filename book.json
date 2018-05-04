@@ -10,20 +10,37 @@
         "-sharing", 
         "sharing-plus",
         "expandable-chapters-small",
-        "anchor-navigation-ex"
+        "anchor-navigation-ex",
+        "redirect",
+        "emphasize",
+        "todo"
     ],
     "pluginsConfig": {
+        "expandable-chapters-small":{
+        },
+        "anchor-navigation-ex":{
+            "associatedWithSummary":false,
+            "showLevel":false,
+            "multipleH1":true,
+            "mode":"float",
+            "pageTop":{
+                "showLevelIcon":false,
+                "level1Icon":"fa fa-hand-o-right",
+                "level2Icon":"fa fa-hand-o-right",
+                "level3Icon":"fa fa-hand-o-right"
+            }
+        },
         "toc2": {
             "addClass": true,
             "className": "toc"
         },
         "tbfed-pagefooter": {
-            "copyright": "&copy; doctording",
+            "copyright": "&copy; apache",
             "modify_label": "modyfied at：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         "github": {
-            "url": "https://github.com/doctording"
+            "url": "https://github.com/doctording/kakfa-doc"
         },
         "sharing": {
             "douban": false,

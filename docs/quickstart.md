@@ -9,6 +9,8 @@ Kafka是基于zookeeper的，所以首先要配置zookeeper, 其次是Kafka配�
 
 conf/zoo.cfg
 
+主要是 dataDir,  dataLogDir, clientPort
+
 ```
 # The number of milliseconds of each tick
 tickTime=2000
@@ -48,14 +50,14 @@ bin/zkServer start
 
 # Kafka配置
 
-## Kafka官网下载Kafka release包, 并解压
+## 第一步，Kafka官网下载Kafka release包, 并解压
 
 ```
 tar -xzf kafka_2.11-1.1.0.tgz
 cd kafka_2.11-1.1.0
 ```
 
-## 启动Kafka服务端
+## 第二步，启动Kafka服务端
 
 ```
 bin/kafka-server-start.sh config/server.properties
@@ -80,9 +82,9 @@ log.dirs=/Users/mubi/soft/kafka_2.11-1.1.0/logs
 
 kafka 配置文件默认使用zookeeper 2181 端口
 
-## 创建topic
+## 第三步，创建topic
 
-创建一个名为： test 的 topic
+创建一个名称为： test 的 topic
 ```
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
 ```
@@ -94,9 +96,9 @@ bin/kafka-topics.sh --list --zookeeper localhost:2181
 ```
 
 
-## 服务端发送消息
+## 第四步，服务端发送消息
 
-直接在控制台上输入任意的消息
+直接在控制台上输入任意的字符串消息
 
 ```
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
@@ -105,7 +107,7 @@ This is another message
 xxx
 ```
 
-## 客户端接收消息
+## 第五步，客户端接收消息
 
 消费者消费上述服务端的消息
 
@@ -113,7 +115,7 @@ xxx
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --from-beginning
 ```
 
-当服务端不断的发送数据时，客户端能不断的显示接受搭配的消息
+当服务端不断的发送数据时，客户端能不断的显示接收到的消息
 
 运行截图如下
 ![](./imgs/kafka_topic_sc.png)
@@ -157,11 +159,12 @@ Starting zookeeper ... STARTED
 
 ## 接着开启kafka服务
 ```
+bin/kafka-server-start.sh config/server.properties &
+
 bin/kafka-server-start.sh config/server-1.properties &
 
 bin/kafka-server-start.sh config/server-2.properties &
 ```
-
 
 ## 创建 topic
 ```
