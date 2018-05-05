@@ -26,7 +26,7 @@
         
         * [Legacy APIs](docs/documentations/apis/legacy.md)
     
-    * [KafkaStreams](docs/documentations/kafka_streams.md)
+    * [Kafka Streams](docs/documentations/kafka_streams.md)
     
     * [Kafka Connect](docs/documentations/kafka_connect.md)
     
