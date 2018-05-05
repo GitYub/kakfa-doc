@@ -38,7 +38,7 @@ gitbook serve   # 本地浏览器输入:localhost:4000
 
 * 更新计划: **每周更新至少一次**
 
-章节 | 子章节1 | 子章节2 | 章节描述 | 完成情况
+章节 | 子章节1 | 子章节2 | 章节描述 | 完成情况
 --- | --- | --- | --- | --- 
 Introduction |  |  | kafka整体简介 | <font color='blue'>进行中</font>
 Quickstart |  |  | 简单的Kafka使用 |  <font color='blue'>进行中</font>
