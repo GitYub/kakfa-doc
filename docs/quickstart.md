@@ -118,7 +118,7 @@ bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic test --f
 当服务端不断的发送数据时，客户端能不断的显示接收到的消息
 
 运行截图如下
-![](./imgs/kafka_topic_sc.png)
+![](./imgs/quickstart_kafka_topic_sc.png)
 
 ---
 
@@ -171,7 +171,7 @@ bin/kafka-server-start.sh config/server-2.properties &
 bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 --partitions 1 --topic my-replicated-topic
 ```
 
-![](./imgs/create_topic.png)
+![](./imgs/quickstart_create_topic.png)
 
 
 ## 查看topic的broker情况
@@ -180,7 +180,7 @@ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 2 -
 bin/kafka-topics.sh --describe --zookeeper localhost:2181 --topic my-replicated-topic
 ```
 
-![](./imgs/desc_topic.png)
+![](./imgs/quickstart_desc_topic.png)
 
 对于 test topic查看
 ```
@@ -229,9 +229,9 @@ kill -9 pid
 ```
 接着查看 leader 自动变成了2，consumer依然能正常访问得到消息
 
-![](./imgs/ps_server.png)
+![](./imgs/quickstart_ps_server.png)
 
-![](./imgs/desc_topic_2.png)
+![](./imgs/quickstart_desc_topic_2.png)
 
 ----
 
@@ -284,7 +284,7 @@ file=test.sink.txt
 bin/connect-standalone.sh config/connect-standalone.properties config/connect-file-source.properties config/connect-file-sink.properties
 ```
 
-![](./imgs/test.png)
+![](./imgs/quickstart_test.png)
 
 3. 客户端验证
 
@@ -292,7 +292,7 @@ bin/connect-standalone.sh config/connect-standalone.properties config/connect-fi
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic connect-test --from-beginning
 ```
 
-![](./imgs/connect-test-console-consumer.png)
+![](./imgs/quickstart_connect-test-console-consumer.png)
 
 
 ![](./imgs/connect-test-console-consumer-2.png)
