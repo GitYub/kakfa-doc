@@ -48,12 +48,12 @@ Documentation | Getting Started | | 文档开始介绍 |
 Documentation | APIs |  | kafka api | 
 Documentation | APIs | Producer API |  | 
 Documentation | APIs | Consumer API |  |
-Documentation | APIs | Streams API |   | 
+Documentation | APIs | Streams API | | 
 Documentation | APIs | Connect API | | 
 Documentation | APIs | AdminClient API |  | 
 Documentation | APIs | Legacy APIs |  | 
-Documentation | Kafka Streams |  |  | 
-Documentation | Kafka Connect |  |  | 
+Documentation | Kafka Streams | | | 
+Documentation | Kafka Connect | | | 
 Documentation | Configuration |  | 配置文件 | 
 Documentation | Configuration | Broker Configs|  |   
 Documentation | Configuration | Topic Configs |  |  
